@@ -1,0 +1,281 @@
+/* Responsive styles for all pages */
+
+/* Base responsive utilities */
+.page-container {
+  padding: 32px 48px;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Tablet and below - 1024px */
+@media (max-width: 1024px) {
+  .page-container {
+    padding: 28px 36px;
+  }
+
+  /* Grid adjustments */
+  div[style*="gridTemplateColumns: 'repeat(4, 1fr)'"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  div[style*="gridTemplateColumns: 'repeat(3, 1fr)'"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Tablet - 768px */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 24px;
+  }
+
+  .page-title {
+    font-size: 1.65rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+  }
+
+  /* Headers */
+  h1 {
+    font-size: 1.65rem !important;
+  }
+
+  h2 {
+    font-size: 1.15rem !important;
+  }
+
+  h3 {
+    font-size: 1rem !important;
+  }
+
+  /* All grids to single column or 2 columns max */
+  div[style*="gridTemplateColumns: 'repeat(4, 1fr)'"],
+  div[style*="gridTemplateColumns: 'repeat(3, 1fr)'"],
+  div[style*="gridTemplateColumns: 'repeat(auto-fit"],
+  div[style*="gridTemplateColumns: 'repeat(auto-fill"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Flex containers wrap */
+  div[style*="display: 'flex'"][style*="gap"] {
+    flex-wrap: wrap;
+  }
+
+  /* Full width search */
+  div[style*="minWidth: '300px'"] {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+
+  /* Reduce padding */
+  div[style*="padding: '28px'"] {
+    padding: 20px !important;
+  }
+
+  div[style*="padding: '24px'"] {
+    padding: 18px !important;
+  }
+
+  div[style*="padding: '20px'"] {
+    padding: 16px !important;
+  }
+
+  /* Reduce gaps */
+  div[style*="gap: '28px'"] {
+    gap: 20px !important;
+  }
+
+  div[style*="gap: '24px'"] {
+    gap: 16px !important;
+  }
+
+  /* Smaller chart heights */
+  div[style*="height: '300px'"] {
+    height: 220px !important;
+  }
+
+  div[style*="height: '250px'"] {
+    height: 200px !important;
+  }
+
+  /* Buttons */
+  button {
+    font-size: 0.9rem !important;
+  }
+
+  /* Tabs container */
+  div[style*="display: 'inline-flex'"][style*="gap: '8px'"] {
+    display: flex !important;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  div[style*="display: 'inline-flex'"][style*="gap: '8px'"] button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 10px 18px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Mobile - 480px */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 16px;
+  }
+
+  .page-header {
+    margin-bottom: 20px;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* Headers */
+  h1 {
+    font-size: 1.4rem !important;
+  }
+
+  h2 {
+    font-size: 1.05rem !important;
+  }
+
+  h3 {
+    font-size: 0.95rem !important;
+  }
+
+  /* All grids single column */
+  div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce all paddings */
+  div[style*="padding: '32px 48px'"],
+  div[style*="padding: '28px'"],
+  div[style*="padding: '24px'"],
+  div[style*="padding: '20px'"],
+  div[style*="padding: '18px'"],
+  div[style*="padding: '16px'"] {
+    padding: 14px !important;
+  }
+
+  /* Reduce all gaps */
+  div[style*="gap: '28px'"],
+  div[style*="gap: '24px'"],
+  div[style*="gap: '20px'"] {
+    gap: 14px !important;
+  }
+
+  div[style*="gap: '16px'"] {
+    gap: 12px !important;
+  }
+
+  /* Smaller buttons */
+  button {
+    padding: 9px 14px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Smaller inputs */
+  input,
+  select {
+    padding: 10px 12px !important;
+    font-size: 0.9rem !important;
+  }
+
+  input[style*="padding: '12px 16px 12px 40px'"] {
+    padding: 10px 12px 10px 36px !important;
+  }
+
+  /* Smaller charts */
+  div[style*="height: '300px'"],
+  div[style*="height: '220px'"] {
+    height: 180px !important;
+  }
+
+  div[style*="height: '250px'"],
+  div[style*="height: '200px'"] {
+    height: 160px !important;
+  }
+
+  /* Font sizes */
+  div[style*="fontSize: '0.95rem'"],
+  span[style*="fontSize: '0.95rem'"],
+  p[style*="fontSize: '0.95rem'"] {
+    font-size: 0.85rem !important;
+  }
+
+  div[style*="fontSize: '0.9rem'"],
+  span[style*="fontSize: '0.9rem'"] {
+    font-size: 0.8rem !important;
+  }
+
+  /* Stats and metric values */
+  div[style*="fontSize: '2.5rem'"] {
+    font-size: 1.8rem !important;
+  }
+
+  div[style*="fontSize: '2rem'"] {
+    font-size: 1.5rem !important;
+  }
+
+  div[style*="fontSize: '1.5rem'"] {
+    font-size: 1.2rem !important;
+  }
+
+  /* Border widths */
+  div[style*="borderLeftWidth: '4px'"] {
+    border-left-width: 3px !important;
+  }
+
+  /* Icon sizes in stats */
+  div[style*="fontSize: '3rem'"] {
+    font-size: 2.2rem !important;
+  }
+
+  div[style*="fontSize: '2.5rem'"] {
+    font-size: 1.8rem !important;
+  }
+
+  /* Tabs even more compact */
+  div[style*="display: 'inline-flex'"][style*="gap: '8px'"] button {
+    padding: 8px 14px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Device/alert cards */
+  div[style*="borderRadius: '12px'"][style*="padding"] {
+    border-radius: 10px !important;
+  }
+
+  /* Action buttons in cards */
+  div[style*="gap: '12px'"] button {
+    font-size: 0.8rem !important;
+    padding: 8px 12px !important;
+  }
+}
+

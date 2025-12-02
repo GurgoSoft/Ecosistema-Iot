@@ -1,0 +1,443 @@
+/* Login Component */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('/background-login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.login-container {
+  min-height: 100vh;
+  background-image: url('/background-login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.login-content {
+  width: 100%;
+  height: 95vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+}
+
+.login-form-section {
+  flex: 0 0 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.logo-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.logo-divider {
+  width: 2px;
+  height: 45px;
+  background-color: #2d3748;
+}
+
+.logo-text {
+  letter-spacing: 1px;
+  font-size: 2.2rem;
+}
+
+.login-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 4px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  background: #f7fafc;
+  color: #2d3748;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #00d4ff;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.form-input::placeholder {
+  color: #a0aec0;
+}
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-container .form-input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  color: #718096;
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #4a5568;
+}
+
+.forgot-password {
+  text-align: left;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+.forgot-link {
+  color: #718096;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+  color: #4a5568;
+}
+
+.login-button {
+  background: #00d4ff;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 15px 0;
+}
+
+.login-button:hover {
+  background: #0099cc;
+}
+
+.login-button:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+}
+
+/* Admin login */
+.admin-login {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-link {
+  color: #718096;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.admin-link:hover {
+  color: #4a5568;
+}
+
+/* Create account */
+.create-account {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-account-link {
+  background: none;
+  border: 2px solid #00d4ff;
+  color: #00d4ff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-account-link:hover {
+  background: #00d4ff;
+  color: white;
+}
+
+/* Terms */
+.terms-section {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.terms-link {
+  background: none;
+  border: none;
+  color: #00d4ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.terms-link:hover {
+  color: #0099cc;
+  text-decoration: underline;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+  background: linear-gradient(135deg, #00bcd4 0%, #00acc1 100%);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.admin-login {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.admin-link {
+  color: #718096;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.admin-link:hover {
+  color: #4a5568;
+  text-decoration: underline;
+}
+
+.create-account {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.create-account-link {
+  background: none;
+  border: 2px solid #00bcd4;
+  color: #00bcd4;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-account-link:hover {
+  background: #00bcd4;
+  color: white;
+}
+
+.terms-section {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.terms-link {
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+.terms-link:hover {
+  text-decoration: underline;
+}
+
+/* Sección de imagen/dashboard */
+.login-image-section {
+  flex: 0 0 50%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive Design 
+   
+   NOTA IMPORTANTE: Para que el login funcione correctamente con las imágenes personalizadas,
+   necesitas agregar estos archivos en la carpeta public/:
+   - /logo-orus.png - Logo de la empresa (recomendado 40x40px)
+   - /dashboard-preview.jpg - Imagen del dashboard (recomendado 500x300px)
+   
+*/
+@media (max-width: 968px) {
+  .login-content {
+    width: 98%;
+    height: 90vh;
+    flex-direction: column;
+  }
+  
+  .login-form-section {
+    padding: 50px 40px;
+  }
+  
+  .login-image-section {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-content {
+    flex-direction: column;
+    height: auto;
+    max-width: 500px;
+  }
+  
+  .login-form-section {
+    padding: 40px 30px;
+  }
+  
+  .login-image-section {
+    height: 300px;
+  }
+  
+  .overlay-text {
+    top: 30px;
+    left: 30px;
+  }
+  
+  .overlay-title,
+  .overlay-subtitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 5px;
+  }
+  
+  .login-content {
+    width: 100%;
+    height: 95vh;
+    border-radius: 15px;
+  }
+  
+  .login-form-section {
+    padding: 40px 25px;
+  }
+  
+  .login-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+  
+  .form-input {
+    padding: 14px 16px;
+  }
+  
+  .login-image-section {
+    min-height: 250px;
+  }
+  
+  .overlay-text {
+    top: 20px;
+    left: 20px;
+  }
+  
+  .overlay-title,
+  .overlay-subtitle {
+    font-size: 18px;
+  }
+}
