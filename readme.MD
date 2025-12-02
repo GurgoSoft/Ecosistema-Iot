@@ -534,14 +534,8 @@ Este proyecto está bajo la Licencia ISC.
 
 ## 👥 Autores
 
-- **GurgoSoft** - [GitHub](https://github.com/GurgoSoft)
-
-## 🙏 Agradecimientos
-
-- Equipo de desarrollo de ORUS
-- Comunidad de Node.js y React
-- Contribuidores del proyecto
-
+- **Santiago Gómez** - [GitHub](https://github.com/GurgoSoft)
+- **Rubén Jiménez** - [GitHub](https://github.com/Rubendev25-Ad)
 ---
 
 **Nota**: Este proyecto está en desarrollo activo. Las características y la documentación pueden cambiar.
