@@ -9,9 +9,11 @@ import GrafanaPanel from '../components/GrafanaPanel';
 
 interface DashboardProps {
   onLogout?: () => void;
+  selectedFieldId?: string | null;
+  onBackToFields?: () => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onLogout, selectedFieldId, onBackToFields }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -104,6 +106,18 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
         <nav className="sidebar-nav">
           <div className="nav-section">
             <div className="nav-section-title">Main</div>
+            {onBackToFields && (
+              <div 
+                className="nav-item"
+                onClick={onBackToFields}
+                title="Ver todos los campos"
+              >
+                <svg className="nav-item-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="nav-item-text">Mis Campos</span>
+              </div>
+            )}
             <div 
               className={`nav-item ${activeSection === 'dashboard' ? 'active' : ''}`}
               onClick={() => setActiveSection('dashboard')}
@@ -183,7 +197,18 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
           </button>
 
           <div className="breadcrumb">
-            <span className="breadcrumb-item">Home</span>
+            {onBackToFields && (
+              <>
+                <button className="breadcrumb-button" onClick={onBackToFields} title="Volver a campos">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Campos
+                </button>
+                <span className="breadcrumb-separator">/</span>
+              </>
+            )}
+            <span className="breadcrumb-item">Dashboard</span>
             <span className="breadcrumb-separator">/</span>
             <span className="breadcrumb-item breadcrumb-current">
               {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
