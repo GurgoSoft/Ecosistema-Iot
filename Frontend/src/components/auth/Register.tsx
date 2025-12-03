@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Register.css';
+import { authService } from '../../services/api';
 
 interface RegisterProps {
   onRegister?: (userData: any) => void;
@@ -103,11 +104,32 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      // Simular llamada a API de registro
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      onRegister?.(formData);
-    } catch (error) {
+      // Llamada REAL al backend para registrar
+      const response = await authService.register({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        areaOfWork: formData.areaOfWork,
+        companyName: formData.companyName,
+        companyWebsite: formData.companyWebsite,
+        phone: formData.phone
+      });
+      
+      // Guardar token en localStorage
+      if (response.data?.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+      }
+      
+      // Avanzar al paso 3 (confirmación)
+      setCurrentStep(3);
+      
+    } catch (error: any) {
       console.error('Error en registro:', error);
+      const errorMessage = error.response?.data?.message || 'Error al registrar usuario';
+      alert(errorMessage);
     } finally {
       setIsLoading(false);
     }

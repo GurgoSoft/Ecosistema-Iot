@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Modal from './Modal';
+import { authService } from '../../services/api';
 
 interface LoginProps {
   onLogin?: (username: string, password: string) => void;
@@ -21,11 +22,39 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validar que los campos no estén vacíos
+    if (!username || !password) {
+      setModalConfig({
+        type: 'error',
+        title: 'Error',
+        message: 'Por favor ingresa tu username y contraseña'
+      });
+      setShowModal(true);
+      return;
+    }
+    
+    if (username.trim() === '' || password.trim() === '') {
+      setModalConfig({
+        type: 'error',
+        title: 'Error',
+        message: 'El username y la contraseña no pueden estar vacíos'
+      });
+      setShowModal(true);
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
-      // Simular llamada a API
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Llamada REAL al backend
+      console.log('Enviando login:', { username, password });
+      const response = await authService.login(username, password);
+      console.log('Respuesta del backend:', response);
+      
+      // Guardar token en localStorage
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
       
       // Mostrar modal de éxito
       setModalConfig({
@@ -40,11 +69,11 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
         onLogin?.(username, password);
       }, 1500);
       
-    } catch (error) {
+    } catch (error: any) {
       setModalConfig({
         type: 'error',
         title: 'Error',
-        message: 'Credenciales incorrectas. Por favor intenta de nuevo.'
+        message: error.response?.data?.message || 'Credenciales incorrectas. Por favor intenta de nuevo.'
       });
       setShowModal(true);
       setIsLoading(false);

@@ -68,7 +68,17 @@ export const authService = {
   },
 
   // Registrar usuario
-  register: async (userData: { username: string; email: string; password: string }): Promise<User> => {
+  register: async (userData: { 
+    username: string; 
+    email: string; 
+    password: string;
+    firstName: string;
+    lastName: string;
+    areaOfWork: string;
+    companyName: string;
+    companyWebsite: string;
+    phone?: string;
+  }): Promise<any> => {
     const response = await api.post('/auth/register', userData);
     return response.data;
   },
