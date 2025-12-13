@@ -14,6 +14,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [modalConfig, setModalConfig] = useState({
     type: 'success' as 'success' | 'error' | 'warning' | 'info',
     title: '',
@@ -23,22 +24,25 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Limpiar errores previos
+    setErrors({});
+    const newErrors: {[key: string]: string} = {};
+    
     // Validar que los campos no estén vacíos
-    if (!username || !password) {
-      setModalConfig({
-        type: 'error',
-        title: 'Error',
-        message: 'Por favor ingresa tu username y contraseña'
-      });
-      setShowModal(true);
-      return;
+    if (!username || username.trim() === '') {
+      newErrors.username = 'El nombre de usuario es requerido';
     }
     
-    if (username.trim() === '' || password.trim() === '') {
+    if (!password || password.trim() === '') {
+      newErrors.password = 'La contraseña es requerida';
+    }
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       setModalConfig({
         type: 'error',
         title: 'Error',
-        message: 'El username y la contraseña no pueden estar vacíos'
+        message: 'Por favor completa todos los campos obligatorios'
       });
       setShowModal(true);
       return;
@@ -86,70 +90,95 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
 
   return (
     <div className="login-container">
-      <div className="login-content">
+      <div className="login-wrapper">
+        {/* Lado izquierdo - Imagen */}
+        <div className="login-image-section">
+          <img 
+            src="/Login.png" 
+            alt="Agriculture Field" 
+            className="field-image"
+          />
+        </div>
+
+        {/* Lado derecho - Formulario */}
         <div className="login-form-section">
-          <div className="login-form">
+          <div className="login-form-content">
+            {/* Logo */}
             <div className="logo-section">
-              <div className="logo">
-                <img 
-                  src="/logo-orus.png" 
-                  alt="ORUS Logo" 
-                  className="logo-image"
-                />
-                <div className="logo-divider"></div>
-                <span className="logo-text">ORUS</span>
-              </div>
+              <img 
+                src="/logoOrus.jpeg" 
+                alt="ORUS Agriculture" 
+                className="logo-image"
+              />
             </div>
 
-            <h2 className="login-title">Login</h2>
+            {/* Título */}
+            <h2 className="login-title">Iniciar Sesión</h2>
 
+            {/* Formulario */}
             <form onSubmit={handleSubmit} className="auth-form">
               <div className="form-group">
                 <label htmlFor="username" className="form-label">
-                  Username
+                  Correo Electrónico
                 </label>
                 <input
                   type="text"
                   id="username"
-                  className="form-input"
-                  placeholder="Enter your username"
+                  className={`form-input ${errors.username ? 'error' : ''}`}
+                  placeholder="Ingresa tu correo electrónico"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    if (errors.username) {
+                      setErrors(prev => ({ ...prev, username: '' }));
+                    }
+                  }}
                 />
+                {errors.username && <span className="error-message">{errors.username}</span>}
               </div>
 
               <div className="form-group">
                 <label htmlFor="password" className="form-label">
-                  Password
+                  Contraseña
                 </label>
                 <div className="password-input-container">
                   <input
                     type={showPassword ? 'text' : 'password'}
                     id="password"
-                    className="form-input"
-                    placeholder="Enter your password"
+                    className={`form-input ${errors.password ? 'error' : ''}`}
+                    placeholder="Ingresa tu contraseña"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      if (errors.password) {
+                        setErrors(prev => ({ ...prev, password: '' }));
+                      }
+                    }}
                   />
                   <button
                     type="button"
                     className="password-toggle"
                     onClick={() => setShowPassword(!showPassword)}
+                    aria-label="Toggle password visibility"
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       {showPassword ? (
-                        <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24M9.88 9.88L6.61 6.61M9.88 9.88l4.24 4.24M12 5.5c-7 0-11 6.5-11 6.5s4 6.5 11 6.5 11-6.5 11-6.5-4-6.5-11-6.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       ) : (
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <>
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </>
                       )}
                     </svg>
                   </button>
                 </div>
+                {errors.password && <span className="error-message">{errors.password}</span>}
               </div>
 
               <div className="forgot-password">
                 <a href="#" className="forgot-link">
-                  Forgot password?
+                  ¿Olvidaste tu contraseña?
                 </a>
               </div>
 
@@ -158,29 +187,20 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
                 className="login-button"
                 disabled={isLoading}
               >
-                {isLoading ? 'Logging in...' : 'Log in'}
+                {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
               </button>
-
-              <div className="create-account">
-                <button
-                  type="button"
-                  className="create-account-link"
-                  onClick={onSwitchToRegister}
-                >
-                  Create an account
-                </button>
-              </div>
             </form>
-          </div>
-        </div>
 
-        <div className="login-image-section">
-          <div className="dashboard-image-container">
-            <img 
-              src="/dashboard-preview.jpg" 
-              alt="Dashboard Preview" 
-              className="dashboard-image"
-            />
+            {/* Enlaces adicionales */}
+            <div className="additional-links">
+              <button
+                type="button"
+                className="create-account-link"
+                onClick={onSwitchToRegister}
+              >
+                Crear una cuenta
+              </button>
+            </div>
           </div>
         </div>
       </div>
