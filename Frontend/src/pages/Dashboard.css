@@ -11,11 +11,11 @@
 /* Sidebar */
 .sidebar {
   width: 260px;
-  background: #1e293b;
+  background: #2c5234;
   color: white;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #2d3748;
+  border-right: 1px solid #3d6947;
   transition: all 0.3s ease;
 }
 
@@ -36,7 +36,7 @@
 
 .sidebar-header {
   padding: 20px;
-  border-bottom: 1px solid #2d3748;
+  border-bottom: 1px solid #3d6947;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,8 +51,8 @@
 }
 
 .sidebar-logo-image {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .sidebar-toggle:hover {
-  background: #2d3748;
+  background: #3d6947;
 }
 
 .sidebar-nav {
@@ -102,7 +102,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #64748b;
+  color: #f6d8b0;
   padding: 0 20px;
   margin-bottom: 8px;
 }
@@ -124,14 +124,14 @@
 }
 
 .nav-item:hover {
-  background: #2d3748;
+  background: #3d6947;
   color: white;
 }
 
 .nav-item.active {
-  background: #2d3748;
+  background: #3d6947;
   color: white;
-  border-left-color: #00bcd4;
+  border-left-color: #EF7829;
 }
 
 .nav-item-icon {
@@ -146,7 +146,7 @@
 
 .sidebar-footer {
   padding: 20px;
-  border-top: 1px solid #2d3748;
+  border-top: 1px solid #3d6947;
 }
 
 .user-info {
@@ -240,9 +240,9 @@
 }
 
 .breadcrumb-button:hover {
-  background: #f9fafb;
-  border-color: #10b981;
-  color: #10b981;
+  background: #fef3e2;
+  border-color: #EF7829;
+  color: #EF7829;
 }
 
 .breadcrumb-button svg {
@@ -285,8 +285,8 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #00bcd4;
-  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+  border-color: #EF7829;
+  box-shadow: 0 0 0 3px rgba(239, 120, 41, 0.1);
 }
 
 .search-icon {
@@ -405,23 +405,23 @@
 }
 
 .stat-icon.blue {
-  background: #dbeafe;
-  color: #2563eb;
+  background: #e1f3f8;
+  color: #7CB3C2;
 }
 
 .stat-icon.green {
-  background: #d1fae5;
-  color: #10b981;
+  background: #e8f5e9;
+  color: #2c5234;
 }
 
 .stat-icon.yellow {
-  background: #fef3c7;
-  color: #f59e0b;
+  background: #fef9e7;
+  color: #F1B332;
 }
 
 .stat-icon.red {
-  background: #fee2e2;
-  color: #ef4444;
+  background: #fef3e2;
+  color: #EF7829;
 }
 
 .stat-trend {
@@ -569,8 +569,8 @@
 }
 
 .device-status-indicator.online {
-  background: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  background: #2c5234;
+  box-shadow: 0 0 0 3px rgba(44, 82, 52, 0.2);
 }
 
 .device-status-indicator.offline {
@@ -578,8 +578,8 @@
 }
 
 .device-status-indicator.error {
-  background: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  background: #EF7829;
+  box-shadow: 0 0 0 3px rgba(239, 120, 41, 0.2);
 }
 
 .device-info {
@@ -617,7 +617,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EF7829 0%, #F1B332 100%);
   border-radius: 8px;
   color: white;
   font-size: 14px;
@@ -700,7 +700,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 32px 28px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EF7829 0%, #F1B332 100%);
   border-radius: 20px;
   color: white;
   min-height: 180px;
@@ -708,19 +708,19 @@
 }
 
 .metric-card.green {
-  background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%);
+  background: linear-gradient(135deg, #2c5234 0%, #4a7c59 100%);
 }
 
 .metric-card.blue {
-  background: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%);
+  background: linear-gradient(135deg, #7CB3C2 0%, #a3d5e0 100%);
 }
 
 .metric-card.orange {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  background: linear-gradient(135deg, #F1B332 0%, #f6d8b0 100%);
 }
 
 .metric-card.red {
-  background: linear-gradient(135deg, #eb3941 0%, #f15e64 100%);
+  background: linear-gradient(135deg, #EF7829 0%, #f4a261 100%);
 }
 
 .metric-content {
@@ -777,8 +777,8 @@
 }
 
 .action-button:hover {
-  background: #f8fafc;
-  border-color: #00bcd4;
+  background: #fef3e2;
+  border-color: #EF7829;
   transform: translateY(-2px);
 }
 
@@ -789,7 +789,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: linear-gradient(135deg, #00d4ff 0%, #00bcd4 100%);
+  background: linear-gradient(135deg, #EF7829 0%, #f4a261 100%);
   color: white;
 }
 
@@ -900,15 +900,15 @@
 }
 
 .progress-bar-fill.green {
-  background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+  background: linear-gradient(90deg, #2c5234 0%, #7CB3C2 100%);
 }
 
 .progress-bar-fill.yellow {
-  background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+  background: linear-gradient(90deg, #F1B332 0%, #f6d8b0 100%);
 }
 
 .progress-bar-fill.red {
-  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+  background: linear-gradient(90deg, #EF7829 0%, #f4a261 100%);
 }
 
 /* Activity Feed */
@@ -937,23 +937,23 @@
 }
 
 .activity-icon.info {
-  background: #dbeafe;
-  color: #2563eb;
+  background: #e1f3f8;
+  color: #7CB3C2;
 }
 
 .activity-icon.success {
-  background: #d1fae5;
-  color: #10b981;
+  background: #e8f5e9;
+  color: #2c5234;
 }
 
 .activity-icon.warning {
-  background: #fef3c7;
-  color: #f59e0b;
+  background: #fef9e7;
+  color: #F1B332;
 }
 
 .activity-icon.error {
-  background: #fee2e2;
-  color: #ef4444;
+  background: #fef3e2;
+  color: #EF7829;
 }
 
 .activity-content {

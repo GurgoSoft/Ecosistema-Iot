@@ -156,8 +156,17 @@ const FieldSelectionPage: React.FC<FieldSelectionPageProps> = ({ onFieldSelect, 
       <header className="field-header">
         <div className="header-content">
           <div className="header-left">
-            <h1 className="page-title">Mis Campos</h1>
-            <p className="page-subtitle">Selecciona un campo para ver su monitoreo en tiempo real</p>
+            <div className="field-logo-section">
+              <img 
+                src="/logoOrus.jpeg" 
+                alt="ORUS Logo" 
+                className="field-logo-image"
+              />
+            </div>
+            <div className="header-text">
+              <h1 className="page-title">Mis Campos</h1>
+              <p className="page-subtitle">Selecciona un campo para ver su monitoreo en tiempo real</p>
+            </div>
           </div>
           <div className="header-right">
             {onGoToDashboard && (
@@ -258,21 +267,6 @@ const FieldSelectionPage: React.FC<FieldSelectionPageProps> = ({ onFieldSelect, 
                 <span className="field-area">{field.area}</span>
               </div>
 
-              <div className="field-location">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
-                </svg>
-                <span>{field.location}</span>
-              </div>
-
-              <div className="field-crop">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2v20M12 2C8 2 5 5 5 9s3 7 7 7M12 2c4 0 7 3 7 7s-3 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-                <span>{field.cropType}</span>
-              </div>
-
               {/* Metrics */}
               <div className="field-metrics">
                 <div className="metric">
@@ -298,17 +292,6 @@ const FieldSelectionPage: React.FC<FieldSelectionPageProps> = ({ onFieldSelect, 
                     <span className="metric-value">{field.temperature}°C</span>
                   </div>
                 </div>
-              </div>
-
-              {/* Last Update */}
-              <div className="field-footer">
-                <span className="last-update">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                  {field.lastUpdate}
-                </span>
               </div>
             </div>
           </div>

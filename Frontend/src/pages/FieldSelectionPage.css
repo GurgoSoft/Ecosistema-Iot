@@ -2,7 +2,7 @@
 
 .field-selection-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
+  background: linear-gradient(135deg, #f6d8b0 0%, #fef3e2 50%, #e8f5e9 100%);
   padding: 0;
 }
 
@@ -24,6 +24,27 @@
 }
 
 .header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.field-logo-section {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.field-logo-image {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-text {
   flex: 1;
 }
 
@@ -51,7 +72,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #EF7829 0%, #f4a261 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -59,12 +80,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 6px rgba(239, 120, 41, 0.3);
 }
 
 .add-field-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 6px 12px rgba(239, 120, 41, 0.4);
 }
 
 .add-field-button:active {
@@ -138,28 +159,31 @@
 
 .search-icon {
   position: absolute;
-  left: 1rem;
+  left: 1.25rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: #6b7280;
   pointer-events: none;
+  width: 18px;
+  height: 18px;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.875rem 1rem 0.875rem 3rem;
+  padding: 1rem 1.25rem 1rem 3.25rem;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
   font-size: 0.95rem;
   color: #1f2937;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  border-color: #EF7829;
+  box-shadow: 0 0 0 4px rgba(239, 120, 41, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .search-input::placeholder {
@@ -194,7 +218,7 @@
 }
 
 .view-button.active {
-  background: #10b981;
+  background: #F1B332;
   color: white;
 }
 
@@ -208,7 +232,8 @@
 .fields-container.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  gap: 1.75rem;
+  justify-content: start;
 }
 
 .fields-container.list {
@@ -227,12 +252,14 @@
   border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  height: fit-content;
 }
 
 .field-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  border-color: #10b981;
+  border-color: #EF7829;
 }
 
 .fields-container.list .field-card {
@@ -253,38 +280,38 @@
 .field-image {
   position: relative;
   width: 100%;
-  height: 180px;
-  background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+  height: 100px;
+  background: linear-gradient(135deg, #fef3e2 0%, #f6d8b0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .image-placeholder {
-  color: #10b981;
-  opacity: 0.4;
+  color: #EF7829;
+  opacity: 0.3;
 }
 
 .status-badge {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.4rem 0.875rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
+  top: 0.625rem;
+  right: 0.625rem;
+  padding: 0.3rem 0.625rem;
+  border-radius: 16px;
+  font-size: 0.65rem;
   font-weight: 600;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Field Info */
 .field-info {
-  padding: 1.25rem;
+  padding: 0.625rem 0.75rem 0.5rem 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: 0.4rem;
 }
 
 .field-header-info {
@@ -295,19 +322,20 @@
 }
 
 .field-name {
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #1f2937;
   margin: 0;
+  line-height: 1.2;
 }
 
 .field-area {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #10b981;
-  background: #f0fdf4;
-  padding: 0.25rem 0.625rem;
-  border-radius: 6px;
+  color: #f59e0b;
+  background: #fef3c7;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
   white-space: nowrap;
 }
 
@@ -315,9 +343,10 @@
 .field-crop {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  gap: 0.3rem;
+  font-size: 0.75rem;
   color: #6b7280;
+  line-height: 1.2;
 }
 
 .field-location svg,
@@ -330,21 +359,21 @@
 .field-metrics {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.875rem;
-  padding: 1rem 0 0.5rem 0;
+  gap: 0.4rem;
+  padding: 0.4rem 0 0 0;
   border-top: 1px solid #f3f4f6;
 }
 
 .metric {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.4rem;
 }
 
 .metric-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,7 +396,7 @@
 }
 
 .metric-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: #9ca3af;
   font-weight: 500;
   text-transform: uppercase;
@@ -375,9 +404,10 @@
 }
 
 .metric-value {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: #1f2937;
+  line-height: 1.2;
 }
 
 /* Field Footer */
@@ -412,8 +442,8 @@
 }
 
 .add-new-card:hover {
-  border-color: #10b981;
-  background: #f0fdf4;
+  border-color: #EF7829;
+  background: #fef3e2;
   transform: none;
   box-shadow: none;
 }
@@ -424,7 +454,7 @@
 }
 
 .add-icon {
-  color: #10b981;
+  color: #EF7829;
   margin-bottom: 1rem;
   opacity: 0.6;
 }
@@ -476,6 +506,7 @@
 
   .fields-container.grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    justify-content: start;
   }
 }
 
@@ -483,17 +514,20 @@
   .header-content {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
   }
 
   .header-right {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
   .dashboard-button,
   .add-field-button {
     flex: 1;
+    min-width: 140px;
     justify-content: center;
   }
 
@@ -504,6 +538,7 @@
   .field-toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
 
   .search-container {
@@ -516,6 +551,8 @@
 
   .fields-container.grid {
     grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .fields-container.list .field-card {

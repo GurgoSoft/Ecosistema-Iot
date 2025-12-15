@@ -89,12 +89,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, selectedFieldId, onBack
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <img 
-              src="/logo-orus.png" 
+              src="/logoOrus.jpeg" 
               alt="ORUS Logo" 
               className="sidebar-logo-image"
             />
-            <div className="sidebar-logo-divider"></div>
-            <span className="sidebar-logo-text">ORUS</span>
           </div>
           <button className="sidebar-toggle" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

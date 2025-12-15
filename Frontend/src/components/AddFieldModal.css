@@ -123,12 +123,12 @@
 }
 
 .step.active .step-circle {
-  background: #10b981;
+  background: #EF7829;
   color: white;
 }
 
 .step.completed .step-circle {
-  background: #10b981;
+  background: #2c5234;
   color: white;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .step-line.active {
-  background: #10b981;
+  background: #EF7829;
 }
 
 /* Modal Content */
@@ -192,8 +192,8 @@
 
 .form-input-modal:focus {
   outline: none;
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  border-color: #EF7829;
+  box-shadow: 0 0 0 3px rgba(239, 120, 41, 0.1);
 }
 
 .input-with-unit {
@@ -246,7 +246,7 @@
 .map-container {
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
   border-radius: 16px;
   border: 2px solid #e5e7eb;
   cursor: crosshair;
@@ -256,8 +256,8 @@
 }
 
 .map-container:hover {
-  border-color: #10b981;
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+  border-color: #00bcd4;
+  box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
 }
 
 .map-placeholder {
@@ -266,7 +266,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: #10b981;
+  color: #00bcd4;
 }
 
 .map-placeholder svg {
@@ -294,8 +294,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(to right, #d1fae5 1px, transparent 1px),
-    linear-gradient(to bottom, #d1fae5 1px, transparent 1px);
+    linear-gradient(to right, #80deea 1px, transparent 1px),
+    linear-gradient(to bottom, #80deea 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.5;
 }
@@ -477,15 +477,15 @@
 }
 
 .crop-card:hover {
-  border-color: #64748b;
+  border-color: #EF7829;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
 
 .crop-card.selected {
-  border-color: #3b82f6;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+  border-color: #F1B332;
+  background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
+  box-shadow: 0 8px 24px rgba(241, 179, 50, 0.3);
 }
 
 .crop-icon {
@@ -581,14 +581,14 @@
 }
 
 .modal-button.primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #EF7829 0%, #f4a261 100%);
   color: white;
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 6px rgba(239, 120, 41, 0.3);
 }
 
 .modal-button.primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 6px 12px rgba(239, 120, 41, 0.4);
 }
 
 .modal-button.primary:disabled {
