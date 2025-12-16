@@ -12,10 +12,10 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    companyName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    companyName: ''
   });
   const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
@@ -25,7 +25,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -86,6 +86,8 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
       newErrors.password = 'La contraseña es requerida';
     } else if (formData.password.length < 8) {
       newErrors.password = 'Mínimo 8 caracteres';
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
+      newErrors.password = 'Debe contener al menos un carácter especial';
     }
 
     if (!formData.confirmPassword) {
@@ -114,13 +116,20 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
       const response = await authService.register({
         firstName: formData.firstName,
         lastName: formData.lastName,
-        companyName: formData.companyName,
         email: formData.email,
-        password: formData.password
+        password: formData.password,
+        companyName: formData.companyName
       });
       
-      // Avanzar a verificación
-      setCurrentStep(2);
+      // Guardar token y usuario
+      if (response.data?.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+      }
+      
+      // Notificar éxito y redirigir al login o dashboard
+      alert('¡Cuenta creada exitosamente! Ahora puedes iniciar sesión.');
+      onSwitchToLogin?.();
       
     } catch (error: any) {
       console.error('Error en registro:', error);
@@ -194,6 +203,22 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
       </div>
 
       <div className="form-group">
+        <label htmlFor="email" className="form-label">
+          Correo electrónico
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          className={`form-input ${errors.email ? 'error' : ''}`}
+          placeholder="tu@correo.com"
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+        {errors.email && <span className="error-message">{errors.email}</span>}
+      </div>
+
+      <div className="form-group">
         <label htmlFor="companyName" className="form-label">
           Nombre de empresa
         </label>
@@ -207,22 +232,6 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
           onChange={handleInputChange}
         />
         {errors.companyName && <span className="error-message">{errors.companyName}</span>}
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="email" className="form-label">
-          Correo
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          className={`form-input ${errors.email ? 'error' : ''}`}
-          placeholder="tu@correo.com"
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        {errors.email && <span className="error-message">{errors.email}</span>}
       </div>
 
       <div className="form-group">

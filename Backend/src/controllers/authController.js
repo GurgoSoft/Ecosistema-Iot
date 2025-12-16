@@ -15,20 +15,15 @@ const config = require('../config/config');
 exports.register = async (req, res, next) => {
   try {
     const { 
-      username, 
       firstName, 
       lastName, 
       email, 
       password, 
-      areaOfWork, 
-      companyName, 
-      companyWebsite,
-      phone 
+      companyName
     } = req.body;
 
     // VALIDACIÓN ESTRICTA: Todos los campos obligatorios deben estar presentes
-    if (!username || !firstName || !lastName || !email || !password || 
-        !areaOfWork || !companyName || !companyWebsite) {
+    if (!firstName || !lastName || !email || !password || !companyName) {
       return res.status(400).json({
         success: false,
         message: 'Todos los campos obligatorios deben ser proporcionados'
@@ -36,22 +31,16 @@ exports.register = async (req, res, next) => {
     }
 
     // VALIDACIÓN ESTRICTA: No permitir strings vacíos
-    if (username.trim() === '' || firstName.trim() === '' || lastName.trim() === '' || 
-        email.trim() === '' || password.trim() === '' || areaOfWork.trim() === '' || 
-        companyName.trim() === '' || companyWebsite.trim() === '') {
+    if (firstName.trim() === '' || lastName.trim() === '' || 
+        email.trim() === '' || password.trim() === '' || companyName.trim() === '') {
       return res.status(400).json({
         success: false,
         message: 'Los campos no pueden estar vacíos'
       });
     }
 
-    // VALIDACIÓN ESTRICTA: Verificar username no tenga espacios
-    if (/\s/.test(username)) {
-      return res.status(400).json({
-        success: false,
-        message: 'El username no puede contener espacios'
-      });
-    }
+    // Generar username automáticamente desde el email (parte antes del @)
+    const username = email.split('@')[0].toLowerCase().replace(/[^a-z0-9_-]/g, '_');
 
     // VALIDACIÓN ESTRICTA: Verificar formato de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -77,15 +66,6 @@ exports.register = async (req, res, next) => {
       });
     }
 
-    // Verificar si el username ya existe
-    const usernameExists = await User.findOne({ where: { username: username.trim() } });
-    if (usernameExists) {
-      return res.status(400).json({
-        success: false,
-        message: 'El username ya está registrado'
-      });
-    }
-
     // Verificar si el email ya existe
     const emailExists = await User.findOne({ where: { email: email.trim().toLowerCase() } });
     if (emailExists) {
@@ -97,15 +77,15 @@ exports.register = async (req, res, next) => {
 
     // Crear usuario con TODOS los campos requeridos
     const user = await User.create({
-      username: username.trim(),
+      username: username,
       firstName: firstName.trim(),
       lastName: lastName.trim(),
       email: email.trim().toLowerCase(),
       password: password, // Se encriptará en el hook
-      areaOfWork: areaOfWork.trim(),
+      areaOfWork: 'other', // Valor por defecto
       companyName: companyName.trim(),
-      companyWebsite: companyWebsite.trim(),
-      phone: phone ? phone.trim() : null,
+      companyWebsite: 'https://example.com', // Valor por defecto
+      phone: null, // No se solicita
       role: 'user', // Siempre user por defecto
       is_active: true
     });
@@ -167,27 +147,27 @@ exports.register = async (req, res, next) => {
  */
 exports.login = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    // VALIDACIÓN ESTRICTA: username y password son obligatorios
-    if (!username || !password) {
+    // VALIDACIÓN ESTRICTA: email y password son obligatorios
+    if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: 'Username y contraseña son obligatorios'
+        message: 'Email y contraseña son obligatorios'
       });
     }
 
     // VALIDACIÓN ESTRICTA: No permitir strings vacíos
-    if (username.trim() === '' || password.trim() === '') {
+    if (email.trim() === '' || password.trim() === '') {
       return res.status(400).json({
         success: false,
-        message: 'Username y contraseña no pueden estar vacíos'
+        message: 'Email y contraseña no pueden estar vacíos'
       });
     }
 
-    // VALIDACIÓN ESTRICTA: Buscar usuario (incluir password para verificación)
+    // VALIDACIÓN ESTRICTA: Buscar usuario por email (incluir password para verificación)
     const user = await User.findOne({ 
-      where: { username: username.trim() },
+      where: { email: email.trim().toLowerCase() },
       attributes: { include: ['password'] }
     });
 

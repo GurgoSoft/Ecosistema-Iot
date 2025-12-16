@@ -62,8 +62,8 @@ export const deviceService = {
 // Servicios para autenticación
 export const authService = {
   // Iniciar sesión
-  login: async (username: string, password: string): Promise<{ user: User; token: string }> => {
-    const response = await api.post('/auth/login', { username, password });
+  login: async (email: string, password: string): Promise<{ user: User; token: string }> => {
+    const response = await api.post('/auth/login', { email, password });
     return response.data;
   },
 

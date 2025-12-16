@@ -4,12 +4,12 @@ import Modal from './Modal';
 import { authService } from '../../services/api';
 
 interface LoginProps {
-  onLogin?: (username: string, password: string) => void;
+  onLogin?: (email: string, password: string) => void;
   onSwitchToRegister?: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,8 +29,8 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
     const newErrors: {[key: string]: string} = {};
     
     // Validar que los campos no estén vacíos
-    if (!username || username.trim() === '') {
-      newErrors.username = 'El nombre de usuario es requerido';
+    if (!email || email.trim() === '') {
+      newErrors.email = 'El correo electrónico es requerido';
     }
     
     if (!password || password.trim() === '') {
@@ -52,8 +52,8 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
     
     try {
       // Llamada REAL al backend
-      console.log('Enviando login:', { username, password });
-      const response = await authService.login(username, password);
+      console.log('Enviando login:', { email, password });
+      const response = await authService.login(email, password);
       console.log('Respuesta del backend:', response);
       
       // Guardar token en localStorage
@@ -70,7 +70,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
       
       // Esperar 1.5 segundos antes de redirigir
       setTimeout(() => {
-        onLogin?.(username, password);
+        onLogin?.(email, password);
       }, 1500);
       
     } catch (error: any) {
@@ -118,23 +118,23 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
             {/* Formulario */}
             <form onSubmit={handleSubmit} className="auth-form">
               <div className="form-group">
-                <label htmlFor="username" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Correo Electrónico
                 </label>
                 <input
-                  type="text"
-                  id="username"
-                  className={`form-input ${errors.username ? 'error' : ''}`}
+                  type="email"
+                  id="email"
+                  className={`form-input ${errors.email ? 'error' : ''}`}
                   placeholder="Ingresa tu correo electrónico"
-                  value={username}
+                  value={email}
                   onChange={(e) => {
-                    setUsername(e.target.value);
-                    if (errors.username) {
-                      setErrors(prev => ({ ...prev, username: '' }));
+                    setEmail(e.target.value);
+                    if (errors.email) {
+                      setErrors(prev => ({ ...prev, email: '' }));
                     }
                   }}
                 />
-                {errors.username && <span className="error-message">{errors.username}</span>}
+                {errors.email && <span className="error-message">{errors.email}</span>}
               </div>
 
               <div className="form-group">

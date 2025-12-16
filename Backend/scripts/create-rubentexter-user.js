@@ -8,37 +8,37 @@ const { sequelize } = require('../src/config/database');
 
 async function createUser() {
   try {
-    console.log('🔄 Creando usuario sear gurgos...\n');
+    console.log('🔄 Creando usuario de prueba userpro1...\n');
 
     // Verificar si el usuario ya existe
     const existingUser = await User.findOne({ 
-      where: { username: 'seargurgos' } 
+      where: { username: 'userpro1' } 
     });
 
     if (existingUser) {
-      console.log('⚠️  El usuario "seargurgos" ya existe');
+      console.log('⚠️  El usuario "userpro1" ya existe');
       console.log('   ID:', existingUser.id);
       console.log('   Email:', existingUser.email);
       console.log('   Role:', existingUser.role);
       console.log('\n✅ Puedes iniciar sesión con:');
-      console.log('   Username: seargurgos');
-      console.log('   Password: 123456789q#');
+      console.log('   Username: userpro1');
+      console.log('   Password: 12345678a!');
       return;
     }
 
     // Crear el usuario
     const user = await User.create({
-      username: 'seargurgos',
-      name: 'Sear Gurgos', // Columna antigua (aún existe en la BD)
-      firstName: 'Sear',
-      lastName: 'Gurgos',
-      email: 'seargurgos@example.com',
-      password: '123456789q#', // Se encriptará automáticamente
-      areaOfWork: 'technology',
-      companyName: 'ORUS',
-      companyWebsite: 'https://orus.com',
+      username: 'userpro1',
+      name: 'User Pro 1', // Columna antigua (aún existe en la BD)
+      firstName: 'User',
+      lastName: 'Pro 1',
+      email: 'userpro1@example.com',
+      password: '12345678a!', // Se encriptará automáticamente
+      areaOfWork: 'agriculture',
+      companyName: 'ORUS Agriculture',
+      companyWebsite: 'https://orus-agriculture.com',
       phone: '+1234567890',
-      role: 'admin', // Rol de administrador
+      role: 'user', // Rol de usuario regular
       is_active: true
     });
 
@@ -54,9 +54,9 @@ async function createUser() {
     console.log('   Activo:', user.is_active ? 'Sí' : 'No');
     
     console.log('\n✅ Credenciales para iniciar sesión:');
-    console.log('   Username: seargurgos');
-    console.log('   Password: 123456789q#');
-    console.log('\n🌐 Abre el navegador en: http://localhost:3000');
+    console.log('   Username: userpro1');
+    console.log('   Password: 12345678a!');
+    console.log('\n🌐 Abre el navegador en: http://localhost:5173');
     console.log('   Y usa estas credenciales para iniciar sesión');
 
   } catch (error) {
